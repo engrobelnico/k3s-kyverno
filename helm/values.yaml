@@ -1,0 +1,8 @@
+kyverno:
+  grafana:
+    # -- Enable grafana dashboard creation.
+    enabled: true
+
+kyverno-policies:
+  podSecurityStandard: baseline
+  podSecuritySeverity: medium
