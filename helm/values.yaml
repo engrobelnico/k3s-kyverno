@@ -6,3 +6,9 @@ kyverno:
 kyverno-policies:
   podSecurityStandard: baseline
   podSecuritySeverity: medium
+
+policy-reporter:
+  enabled: true
+  metrics:
+    enabled: true
+  
