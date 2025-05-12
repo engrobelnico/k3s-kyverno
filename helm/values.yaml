@@ -2,3 +2,7 @@ kyverno:
   grafana:
     # -- Enable grafana dashboard creation.
     enabled: true
+
+  metricsConfig:
+    # -- Create the configmap.
+    create: true
