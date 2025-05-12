@@ -1,0 +1,20 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: kyverno-reporter
+  namespace: kyerrno
+  labels:
+    app: kyverno-reporter
+  annotations:
+    spec.ingressClassName: traefik
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /kyverno
+            pathType: Prefix
+            backend:
+              service:
+                name: policy-reporter-ui
+                port:
+                  number: 8080
