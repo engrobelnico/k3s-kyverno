@@ -4,7 +4,7 @@ metadata:
   name: kyverno-reporter
   namespace: kyerrno
   labels:
-    app: kyverno-reporter
+    app: kyverno
   annotations:
     spec.ingressClassName: traefik
 spec:
