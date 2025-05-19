@@ -7,7 +7,8 @@ kyverno:
     # -- Create the configmap.
     create: true
 
-  webhooks:
+  config:
+    webhooks:
       # Exclude namespaces
       - namespaceSelector:
           matchExpressions:
