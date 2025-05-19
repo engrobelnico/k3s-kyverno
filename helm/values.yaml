@@ -7,10 +7,18 @@ kyverno:
     # -- Create the configmap.
     create: true
 
-  config:
-    resourceFiltersExcludeNamespaces:
-      # -- Exclude namespaces from the resource filters.
-      - kube-system
-      - kyverno
-      - argocd
-      - prometheus
+  webhooks:
+      # Exclude namespaces
+      - namespaceSelector:
+          matchExpressions:
+          - key: kubernetes.io/metadata.name
+            operator: NotIn
+            values:
+              # System namespaces
+              - kyverno
+              - kube-system
+              - kube-node-lease
+              - kube-public
+              - portainer
+              - argocd
+              - prometheus
