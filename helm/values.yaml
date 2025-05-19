@@ -7,9 +7,10 @@ kyverno:
     # -- Create the configmap.
     create: true
 
-  config.resourceFiltersExcludeNamespaces:
-    # -- Exclude namespaces from the resource filters.
-    - kube-system
-    - kyverno
-    - argocd
-    - prometheus
+  config:
+    resourceFiltersExcludeNamespaces:
+      # -- Exclude namespaces from the resource filters.
+      - kube-system
+      - kyverno
+      - argocd
+      - prometheus
