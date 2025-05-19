@@ -8,18 +8,13 @@ kyverno:
     create: true
 
   config:
-    webhooks:
-      # Exclude namespaces
-      - namespaceSelector:
-          matchExpressions:
-          - key: kubernetes.io/metadata.name
-            operator: NotIn
-            values:
-              # System namespaces
-              - kyverno
-              - kube-system
-              - kube-node-lease
-              - kube-public
-              - portainer
-              - argocd
-              - prometheus
+      excludeKyvernoNamespace: true
+      resourceFiltersExcludeNamespaces:
+        # System namespaces
+        - kyverno
+        - kube-system
+        - kube-node-lease
+        - kube-public
+        - portainer
+        - argocd
+        - prometheus
