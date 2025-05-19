@@ -7,3 +7,18 @@ kyverno:
     # -- Create the configmap.
     create: true
 
+  config:
+    webhooks:
+      # Exclude namespaces from scope
+      - namespaceSelector:
+          matchExpressions:
+          - key: kubernetes.io/metadata.name
+            operator: NotIn
+            values:
+              - kyverno
+              - kube-system
+              - kube-node-lease
+              - kube-public
+              - portainer
+              - argocd
+              - prometheus
