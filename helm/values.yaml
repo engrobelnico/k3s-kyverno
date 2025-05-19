@@ -7,14 +7,3 @@ kyverno:
     # -- Create the configmap.
     create: true
 
-  config:
-      excludeKyvernoNamespace: true
-      resourceFiltersExcludeNamespaces:
-        # System namespaces
-        - kyverno
-        - kube-system
-        - kube-node-lease
-        - kube-public
-        - portainer
-        - argocd
-        - prometheus
