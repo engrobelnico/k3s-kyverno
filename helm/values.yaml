@@ -1,4 +1,19 @@
 kyverno:
+  config: 
+    excludeKyvernoNamespace: true
+    webhooks:
+        # Exclude namespaces
+        namespaceSelector:
+            matchExpressions:
+            - key: kubernetes.io/metadata.name
+              operator: NotIn
+              values:
+                - kube-system
+                - kube-node-lease
+                - kube-public
+                - prometheus
+                - argocd
+              
   grafana:
     # -- Enable grafana dashboard creation.
     enabled: true
@@ -6,12 +21,4 @@ kyverno:
   metricsConfig:
     # -- Create the configmap.
     create: true
-
-  config:
-      excludeKyvernoNamespace: true
-      resourceFiltersExcludeNamespaces:
-        - kube-system
-        - kube-node-lease
-        - kube-public
-        - prometheus
-        - argocd
+        
