@@ -6,3 +6,12 @@ kyverno:
   metricsConfig:
     # -- Create the configmap.
     create: true
+
+  config:
+      excludeKyvernoNamespace: true
+      resourceFiltersExcludeNamespaces:
+        - kube-system
+        - flux-system
+        - kube-node-lease
+        - kube-public
+        - prometheus
