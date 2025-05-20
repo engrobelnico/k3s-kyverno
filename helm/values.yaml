@@ -11,7 +11,7 @@ kyverno:
       excludeKyvernoNamespace: true
       resourceFiltersExcludeNamespaces:
         - kube-system
-        - flux-system
         - kube-node-lease
         - kube-public
         - prometheus
+        - argocd
