@@ -1,4 +1,4 @@
-kyverno:
+kyverno-policies:
   config: 
     excludeKyvernoNamespace: true
     webhooks:
@@ -13,7 +13,7 @@ kyverno:
                 - kube-public
                 - prometheus
                 - argocd
-              
+kyverno:              
   grafana:
     # -- Enable grafana dashboard creation.
     enabled: true
