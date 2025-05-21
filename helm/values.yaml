@@ -1,5 +1,3 @@
-kyverno-policies:
-  
 kyverno:
   grafana:
     # -- Enable grafana dashboard creation.
