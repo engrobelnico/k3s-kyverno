@@ -1,19 +1,22 @@
 kyverno-policies:
-  config: 
-    excludeKyvernoNamespace: true
-    webhooks:
-        # Exclude namespaces
-        namespaceSelector:
-            matchExpressions:
-            - key: kubernetes.io/metadata.name
-              operator: NotIn
-              values:
-                - kube-system
-                - kube-node-lease
-                - kube-public
-                - prometheus
-                - argocd
-kyverno:              
+  # Example: Exclude prometheus-node-exporter from the 'restricted' Pod Security Standard policy.
+  # You'll need to identify which policy or policy group (e.g., podSecurityStandard, bestPractices)
+  # is affecting node-exporter and find the appropriate values structure from the
+  # kyverno-policies chart documentation or its default values.yaml.
+  podSecurityStandard:
+    restricted: # This is an example path; actual path depends on the policy.
+      # ensure the policy itself is enabled if you are just adding an exclusion.
+      # enabled: true
+      # validationFailureAction: Audit # or Enforce
+      exclude:
+        - resources: # Exclude resources matching these criteria
+            namespaces:
+              - kube-system # Namespace where node-exporter runs
+            selector:
+              matchLabels:
+                app.kubernetes.io/name: node-exporter # Label for node-exporter pods
+kyverno:  
+  
   grafana:
     # -- Enable grafana dashboard creation.
     enabled: true
