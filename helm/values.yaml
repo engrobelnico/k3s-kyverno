@@ -13,7 +13,8 @@ kyverno:
       # Exclude prometheus-node-exporter Pods.
       # Format: "[kind,namespace,name,selector]" (use * for wildcard)
       # Adjust namespace and labels to match your node-exporter deployment.
-      - "[*,prometheus,*,*]"
+      - "[*,argocd,*,*]"
+      - "[*,kube-public,*,*]"
       # You might also want to exclude other system components or specific namespaces globally:
       - "[*,kube-system,*,*]" # Exclude all resources in kube-system (use with caution)
       - "[*,kube-node-lease,*,*]"
