@@ -1,27 +1,22 @@
 kyverno-policies:
-  # Example: Exclude prometheus-node-exporter from the 'restricted' Pod Security Standard policy.
-  # You'll need to identify which policy or policy group (e.g., podSecurityStandard, bestPractices)
-  # is affecting node-exporter and find the appropriate values structure from the
-  # kyverno-policies chart documentation or its default values.yaml.
-  podSecurityStandard:
-    restricted: # This is an example path; actual path depends on the policy.
-      # ensure the policy itself is enabled if you are just adding an exclusion.
-      # enabled: true
-      # validationFailureAction: Audit # or Enforce
-      exclude:
-        - resources: # Exclude resources matching these criteria
-            namespaces:
-              - kube-system # Namespace where node-exporter runs
-            selector:
-              matchLabels:
-                app.kubernetes.io/name: node-exporter # Label for node-exporter pods
-kyverno:  
   
+kyverno:
   grafana:
     # -- Enable grafana dashboard creation.
     enabled: true
-
   metricsConfig:
     # -- Create the configmap.
     create: true
+  
+  # Configure Kyverno's global resource filters
+  # This will exclude matching resources from all Kyverno processing.
+  config:
+    resourceFilters:
+      # Exclude prometheus-node-exporter Pods.
+      # Format: "[kind,namespace,name,selector]" (use * for wildcard)
+      # Adjust namespace and labels to match your node-exporter deployment.
+      - "[Pod,prometheus,*,app.kubernetes.io/name=node-exporter]"
+      # You might also want to exclude other system components or specific namespaces globally:
+      # - "[*,kube-system,*,*]" # Exclude all resources in kube-system (use with caution)
+      # - "[Event,*,*,*]" # Commonly excluded
         
