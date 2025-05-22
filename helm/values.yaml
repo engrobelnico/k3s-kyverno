@@ -10,20 +10,19 @@ kyverno:
   # This will exclude matching resources from all Kyverno processing.
   config:
     resourceFilters:
-      # Exclude prometheus-node-exporter Pods.
+      # Exclude prometheus-node-exporter resources from all Kyverno processing.
+      # This is a global exclusion. If you need to exclude these resources from specific
+      # policies only, that configuration should be done within the policy definitions.
       # Format: "[kind,namespace,name,selector]" (use * for wildcard)
-      - "[DaemonSet,prometheus,disallow-host-ports/host-ports-none,app.kubernetes.io/name: prometheus-node-exporter]"
-      - "[DaemonSet,prometheus,disallow-host-namespaces/host-namespaces,app.kubernetes.io/name: prometheus-node-exporter]"
-      - "[DaemonSet,prometheus,disallow-host-path/host-path,app.kubernetes.io/name: prometheus-node-exporter]"
-      - "[Pod,prometheus,disallow-host-ports/host-ports-none,app.kubernetes.io/name: prometheus-node-exporter]"
-      - "[Pod,prometheus,disallow-host-namespaces/host-namespaces,app.kubernetes.io/name: prometheus-node-exporter]"
-      - "[Pod,prometheus,disallow-host-path/host-path,app.kubernetes.io/name: prometheus-node-exporter]"
       # Adjust namespace and labels to match your node-exporter deployment.
+      # The following assumes prometheus-node-exporter DaemonSets and Pods are in the 'prometheus'
+      # namespace and have the label 'app.kubernetes.io/name: prometheus-node-exporter'.
+      # Use '*' for the resource name if the selector is specific enough.
+      - "[DaemonSet,prometheus,*,app.kubernetes.io/name: prometheus-node-exporter]"
+      - "[Pod,prometheus,*,app.kubernetes.io/name: prometheus-node-exporter]"
       - "[*,argocd,*,*]"
-      - "[*,kube-public,*,*]"
       # You might also want to exclude other system components or specific namespaces globally:
       - "[*,kube-system,*,*]" # Exclude all resources in kube-system (use with caution)
       - "[*,kube-node-lease,*,*]"
       - "[*,kube-public,*,*]"
       # - "[Event,*,*,*]" # Commonly excluded
-        
