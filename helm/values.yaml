@@ -12,6 +12,9 @@ kyverno:
     resourceFilters:
       # Exclude prometheus-node-exporter Pods.
       # Format: "[kind,namespace,name,selector]" (use * for wildcard)
+      - "[DaemonSet,prometheus,disallow-host-ports/host-ports-none,app.kubernetes.io/name: prometheus-node-exporter]"
+      - "[DaemonSet,prometheus,disallow-host-namespaces/host-namespaces,app.kubernetes.io/name: prometheus-node-exporter]"
+      - "[DaemonSet,prometheus,disallow-host-path/host-path,app.kubernetes.io/name: prometheus-node-exporter]"
       - "[Pod,prometheus,disallow-host-ports/host-ports-none,app.kubernetes.io/name: prometheus-node-exporter]"
       - "[Pod,prometheus,disallow-host-namespaces/host-namespaces,app.kubernetes.io/name: prometheus-node-exporter]"
       - "[Pod,prometheus,disallow-host-path/host-path,app.kubernetes.io/name: prometheus-node-exporter]"
