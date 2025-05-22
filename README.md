@@ -13,3 +13,10 @@ sudo kubectl get clusterpolicyreport -o wide
 argocd app delete kyverno --cascade
 argocd app terminate-op kyverno
 sudo kubectl patch application/kyverno --type json --patch='[ { "op": "remove", "path": "/metadata/finalizers" } ]' -n argocd
+
+sudo kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n kyverno
+
+sudo kubectl patch ns kyverno -p '{"metadata":{"finalizers":null}}'
+sudo kubectl delete ns kyverno
+
+kctl get policyreport -A
