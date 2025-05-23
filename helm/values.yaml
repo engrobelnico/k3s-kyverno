@@ -9,6 +9,7 @@ kyverno:
   # Configure Kyverno's global resource filters
   # This will exclude matching resources from all Kyverno processing.
   config:
+    enablePolicyExceptions: true
     excludeKyvernoNamespace: true
     resourceFilters:
       # Exclude prometheus-node-exporter resources from all Kyverno processing.
