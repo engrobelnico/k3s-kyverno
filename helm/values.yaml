@@ -9,6 +9,7 @@ kyverno:
   # Configure Kyverno's global resource filters
   # This will exclude matching resources from all Kyverno processing.
   config:
+    excludeKyvernoNamespace: true
     resourceFilters:
       # Exclude prometheus-node-exporter resources from all Kyverno processing.
       # This is a global exclusion. If you need to exclude these resources from specific
@@ -26,3 +27,17 @@ kyverno:
       - "[*,kube-node-lease,*,*]"
       - "[*,kube-public,*,*]"
       # - "[Event,*,*,*]" # Commonly excluded
+
+kyvernopolicies:
+  podSecurityStandard: baseline
+  validationFailureActionOverrides:
+    all:
+      - action: audit
+        namespaces:
+          - argocd
+          - traefik
+          - kube-system
+          - kube-node-lease
+          - kube-public
+          - kyverno
+          - prometheus
