@@ -19,8 +19,8 @@ kyverno:
       # The following assumes prometheus-node-exporter DaemonSets and Pods are in the 'prometheus'
       # namespace and have the label 'app.kubernetes.io/name: prometheus-node-exporter'.
       # Use '*' for the resource name if the selector is specific enough.
-      - "[DaemonSet,prometheus,prometheus-prometheus-node-exporter]"
-      - "[Pod,prometheus,prometheus-prometheus-node-exporter*]"
+      - "[DaemonSet,prometheus,*,prometheus-prometheus-node-exporter]"
+      - "[Pod,prometheus,*,prometheus-prometheus-node-exporter*]"
       # You might also want to exclude other system components or specific namespaces globally:
       - "[*,kube-system,*,*]" # Exclude all resources in kube-system (use with caution)
       - "[*,kube-node-lease,*,*]"
