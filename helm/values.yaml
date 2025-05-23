@@ -1,3 +1,19 @@
+kyverno-policies:
+  config: 
+    excludeKyvernoNamespace: true
+    webhooks:
+        # Exclude namespaces
+        namespaceSelector:
+            matchExpressions:
+            - key: kubernetes.io/metadata.name
+              operator: NotIn
+              values:
+                - kube-system
+                - kube-node-lease
+                - kube-public
+                - prometheus
+                - argocd
+                
 kyverno:
   grafana:
     # -- Enable grafana dashboard creation.
