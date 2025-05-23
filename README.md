@@ -20,3 +20,4 @@ sudo kubectl patch ns kyverno -p '{"metadata":{"finalizers":null}}'
 sudo kubectl delete ns kyverno
 
 kctl get policyreport -A
+kctl get policyreport -n prometheus | grep exporter
