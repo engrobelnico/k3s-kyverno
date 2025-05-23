@@ -21,7 +21,6 @@ kyverno:
       # Use '*' for the resource name if the selector is specific enough.
       - "[DaemonSet,prometheus,prometheus-prometheus-node-exporter]"
       - "[Pod,prometheus,prometheus-prometheus-node-exporter*]"
-      - "[*,argocd,*,*]"
       # You might also want to exclude other system components or specific namespaces globally:
       - "[*,kube-system,*,*]" # Exclude all resources in kube-system (use with caution)
       - "[*,kube-node-lease,*,*]"
@@ -34,7 +33,6 @@ kyvernopolicies:
     all:
       - action: audit
         namespaces:
-          - argocd
           - traefik
           - kube-system
           - kube-node-lease
