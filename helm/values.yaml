@@ -20,14 +20,16 @@ kyverno:
       # namespace and have the label 'app.kubernetes.io/name: prometheus-node-exporter'.
       # Use '*' for the resource name if the selector is specific enough.
       - "[DaemonSet,prometheus,*,app.kubernetes.io/name: prometheus-node-exporter]"
-      - "[Pod,prometheus,*,app.kubernetes.io/name: prometheus-node-exporter]"
+      # - "[Pod,prometheus,*,app.kubernetes.io/name: prometheus-node-exporter]" # Old filter based on label
+      - "[DaemonSet,prometheus,prometheus-prometheus-node-exporter]" # Filter by exact DaemonSet name
+      - "[Pod,prometheus,prometheus-prometheus-node-exporter-*]"    # Filter by Pod name prefix
       # You might also want to exclude other system components or specific namespaces globally:
       - "[*,kube-system,*,*]" # Exclude all resources in kube-system (use with caution)
       - "[*,kube-node-lease,*,*]"
       - "[*,kube-public,*,*]"
-      # - "[Event,*,*,*]" # Commonly excluded
+      - "[Event,*,*,*]" # Commonly excluded
 
-kyvernopolicies:
+kyverno-policies:
   podSecurityStandard: baseline
   validationFailureActionOverrides:
     all:
