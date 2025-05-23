@@ -28,3 +28,16 @@ kyverno:
       - "[*,kube-node-lease,*,*]"
       - "[*,kube-public,*,*]"
       - "[Event,*,*,*]" # Commonly excluded
+
+kyverno-policies:
+  podSecurityStandard: baseline
+  validationFailureActionOverrides:
+    all:
+      - action: audit
+        namespaces:
+          - traefik
+          - kube-system
+          - kube-node-lease
+          - kube-public
+          - kyverno
+          - prometheus

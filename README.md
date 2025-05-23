@@ -21,3 +21,5 @@ sudo kubectl delete ns kyverno
 
 kctl get policyreport -A
 kctl get policyreport -n prometheus | grep exporter
+kctl get cpol,pol -A
+kctl get validatingwebhookconfigurations,mutatingwebhookconfigurations
