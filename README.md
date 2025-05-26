@@ -23,3 +23,7 @@ kctl get policyreport -A
 kctl get policyreport -n prometheus | grep exporter
 kctl get cpol,pol -A
 kctl get validatingwebhookconfigurations,mutatingwebhookconfigurations
+kctl -n kyverno logs <kyverno_pod_name> 
+kctl -n kyverno get netpol kyverno-admission-controller -o yaml
+
+kctl get ds,pod -n prometheus -l app.kubernetes.io/name=prometheus-node-exporter
