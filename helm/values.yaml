@@ -5,11 +5,17 @@ kyverno:
   metricsConfig:
     # -- Create the configmap.
     create: true
+  admissionController:
+    policyExceptions:
+      # -- Enable PolicyException processing.
+      # This is the recommended way to enable the feature via the Helm chart.
+      enable: true
+      # namespace: "kyverno" # Optional: Define if you want to scope where Kyverno looks for PolicyException CRs. Empty (default) means all namespaces.
   
   # Configure Kyverno's global resource filters
   # This will exclude matching resources from all Kyverno processing.
   config:
-    enablePolicyExceptions: true
+    # enablePolicyExceptions: true # This might be redundant or overridden if admissionController.policyExceptions.enable is used.
     excludeKyvernoNamespace: true
     resourceFilters:
       # Exclude prometheus-node-exporter resources from all Kyverno processing.
