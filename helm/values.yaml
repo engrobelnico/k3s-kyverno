@@ -44,9 +44,7 @@ kyverno-policies:
     all:
       - action: audit
         namespaces:
-          - traefik
           - kube-system
           - kube-node-lease
           - kube-public
           - kyverno
-          - prometheus
