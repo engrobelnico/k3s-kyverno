@@ -1,7 +1,7 @@
 apiVersion: kyverno.io/v2 # Check API version for your Kyverno; v1 for older
 kind: PolicyException
 metadata:
-  name: traefik-metrics-autogen
+  name: otel-collector-exception # Name your exception
   namespace: kyverno # Or the namespace configured for exceptions, or prometheus namespace
 spec:
   exceptions:
