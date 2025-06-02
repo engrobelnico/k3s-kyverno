@@ -27,3 +27,14 @@ kctl -n kyverno logs <kyverno_pod_name>
 kctl -n kyverno get netpol kyverno-admission-controller -o yaml
 
 kctl get ds,pod -n prometheus -l app.kubernetes.io/name=prometheus-node-exporter
+
+# If the DaemonSet exists but pods are failing, or if it's partially created:
+kctl get pod -n prometheus prometheus-prometheus-node-exporter-xjzkm -o yaml
+kctl get crd policyexceptions.kyverno.io -o yaml
+
+kctl get policyexceptions -A
+kctl get cpol,pol -A
+
+
+kctl delete validatingwebhookconfiguration kyverno-resource-validating-webhook-cfg
+kctl delete  mutatingwebhookconfiguration kyverno-resource-mutating-webhook-cfg
