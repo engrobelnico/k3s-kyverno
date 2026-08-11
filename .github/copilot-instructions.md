@@ -108,3 +108,9 @@ Before starting a new task in the above plan, update progress in the plan.
 This project is a deployement of kyverno stack threw argocd on k3s local cluster
 
 This project depends on the [k3s],[argocd] and  [prometheus] repositories, which contain deployement of a local K3s cluster on WSL
+
+## Règles de réponse
+- Sois concis.
+- Utilise le typage strict (TypeScript/Python).
+- Ne réexplique pas les concepts de base sauf si demandé.
+- Priorise la sécurité et les performances.
