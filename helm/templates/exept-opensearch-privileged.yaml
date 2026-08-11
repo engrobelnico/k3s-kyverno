@@ -1,0 +1,18 @@
+apiVersion: kyverno.io/v2
+kind: PolicyException
+metadata:
+  name: opensearch-privileged-exception
+  namespace: kyverno
+spec:
+  exceptions:
+    - policyName: "disallow-privileged-containers"
+      ruleNames:
+        - "privileged-containers"
+        - "autogen-privileged-containers"
+  match:
+    any:
+      - resources:
+          kinds:
+            - Pod
+          namespaces:
+            - "opensearch"
